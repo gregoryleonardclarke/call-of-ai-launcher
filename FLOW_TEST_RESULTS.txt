@@ -1,0 +1,6 @@
+﻿Windows build: succeeded
+Automated checks: 38 passed
+Live test: 0.1.9 auto-updated to signed 0.2.0, restarted, checked game
+UI automation: INSTALL clicked; installation finished; same button became PLAY
+UI automation: exactly PLAY, QUIT, Repair buttons on regular launcher
+Public GitHub feed and Mac/Linux not tested

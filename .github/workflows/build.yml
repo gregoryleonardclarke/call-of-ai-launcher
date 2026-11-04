@@ -1,0 +1,31 @@
+name: Build launcher candidates
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            rid: win-x64
+          - os: ubuntu-22.04
+            rid: linux-x64
+          - os: macos-latest
+            rid: osx-arm64
+          - os: macos-latest
+            rid: osx-x64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - run: dotnet run --project tests/Tests.csproj
+      - run: dotnet publish src/Launcher.csproj -c Release -r ${{ matrix.rid }} --self-contained true -o artifacts/${{ matrix.rid }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: launcher-${{ matrix.rid }}-candidate
+          path: artifacts/${{ matrix.rid }}/
+          retention-days: 7
