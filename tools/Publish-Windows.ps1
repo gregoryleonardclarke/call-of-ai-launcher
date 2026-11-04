@@ -4,7 +4,9 @@ $root=Split-Path $PSScriptRoot -Parent
 $env:GIT_TERMINAL_PROMPT='0'
 $env:GCM_INTERACTIVE='never'
 # Use the user's existing Git Credential Manager session; never print/store its token.
+$ErrorActionPreference='Continue'
 $credential="protocol=https`nhost=github.com`n`n" | git -C $root credential fill 2>$null
+$ErrorActionPreference='Stop'
 if($LASTEXITCODE -ne 0){throw 'GitHub authentication unavailable. Sign in to GitHub using Git Credential Manager first.'}
 $password=$credential | Where-Object {$_ -like 'password=*'} | Select-Object -First 1
 if(!$password){throw 'No GitHub credential returned'}
