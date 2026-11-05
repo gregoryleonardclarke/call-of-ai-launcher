@@ -84,10 +84,10 @@ sealed class MainWindow : Window
     bool restarting;
     public MainWindow()
     {
-        Title="Call of AI — Launcher"; Width=850; Height=540; MinWidth=700; MinHeight=440;
+        Title="FRONTLINE — Launcher"; Width=850; Height=540; MinWidth=700; MinHeight=440;
         Background=Brush.Parse("#141C1D");
         var layout=new StackPanel{Margin=new Thickness(36),Spacing=20};
-        layout.Children.Add(new TextBlock{Text="CALL OF AI",FontSize=46,FontWeight=FontWeight.Bold,Foreground=Brush.Parse("#D8BC83")});
+        layout.Children.Add(new TextBlock{Text="FRONTLINE",FontSize=46,FontWeight=FontWeight.Bold,Foreground=Brush.Parse("#D8BC83")});
         layout.Children.Add(new TextBlock{Text="DEPLOYMENT DESK   /   "+Updates.Platform+ (Program.LocalFeed!=null?"   /   LOCAL TEST":""),FontSize=14});
         layout.Children.Add(version);
         var actions=new StackPanel{Orientation=Orientation.Horizontal,Spacing=16};
